@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>MatchGame Lucy Chen</title>
+		<style>
+		  /*
+		  [01] [02] [03] [04]
+		  [05] [06] [07] [08]
+		  [09] [10] [11] [12]
+		  [13] [14] [15] [16]
+		  */
+		  body {
+			background-image: url("img/background.png");
+			max-width: 100%;
+			max-height: 100%;
+		  }
+		  .container {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 10px;
+			height: 100%;
+			width: 500px;
+			margin: auto;
+		  }
+		  .container img {
+			width: 100%;
+		  }
+		  h1 {
+			font-size: 4em;
+			text-align: center;
+			color: white;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		  }
+		  h3 {
+			text-align: center;
+			font-weight: bold;
+			font-size: 2em;
+			color: white;
+			margin-bottom: 20px;
+		  }
+		  /*
+		  button {
+			margin: auto;
+			background-color: #FF7B19;
+			text-align: center;
+			text-decoration: none;  
+			padding: 15px 32px;
+			
+		  }*/
+		  button{
+			font-size: 1rem;
+			text-align: center;
+			color: white;
+			border-color: black;
+			border-width: 0.5rem;
+			background-color: #FF7B19;
+			padding: 15px 32px;
+			cursor: pointer;
+			font-weight: bold;
+			border-radius: 10px;
+		  }
+		  button:hover{
+			color: white;
+			border-color: white;
+			background-color: #FFD580;
+			transition: 1.5s;
+			font-weight: bold;
+		  }
+		  #buttonContainer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		  }
+		</style>
+		<script>
+		  function initialize() {
+			clicks = 0;
+			imagesCurrentlyfacedUp = [];
+			matchings = generateMatchings();
+			correctMatchings = [];
+			console.log(matchings);
+
+			img1 = document.getElementById("01");
+
+			img2 = document.getElementById("02");
+			img3 = document.getElementById("03");
+			img4 = document.getElementById("04");
+			img5 = document.getElementById("05");
+			img6 = document.getElementById("06");
+			img7 = document.getElementById("07");
+			img8 = document.getElementById("08");
+			img9 = document.getElementById("09");
+			img10 = document.getElementById("10");
+			img11 = document.getElementById("11");
+			img12 = document.getElementById("12");
+			img13 = document.getElementById("13");
+			img14 = document.getElementById("14");
+			img15 = document.getElementById("15");
+			img16 = document.getElementById("16");
+			click = document.getElementById("clickElement");
+
+			img1.src = "img/default.PNG";
+			img2.src = "img/default.PNG";
+			img3.src = "img/default.PNG";
+			img4.src = "img/default.PNG";
+			img5.src = "img/default.PNG";
+			img6.src = "img/default.PNG";
+			img7.src = "img/default.PNG";
+			img8.src = "img/default.PNG";
+			img9.src = "img/default.PNG";
+			img10.src = "img/default.PNG";
+			img11.src = "img/default.PNG";
+			img12.src = "img/default.PNG";
+			img13.src = "img/default.PNG";
+			img14.src = "img/default.PNG";
+			img15.src = "img/default.PNG";
+			img16.src = "img/default.PNG";
+			click.innerHTML = "Clicks: ";
+		  }
+
+		  function generateMatchings() {
+			var generatedMatchingsArr = [];
+
+			random = randomInt(1, 16);
+			generatedMatchingsArr.push(random + "");
+
+			while (generatedMatchingsArr.length != 16) {
+			  random = randomInt(1, 16);
+			  repeated = false;
+			  for (i = 0; i < generatedMatchingsArr.length; i++) {
+				if (random == generatedMatchingsArr[i]) {
+				  repeated = true;
+				}
+			  }
+			  if (!repeated) {
+				generatedMatchingsArr.push(random + "");
+			  }
+			}
+			// for (i = 0; i < generatedMatchingsArr.length; i++) {
+			//   if (generatedMatchingsArr[i] <= 9) {
+			//     generatedMatchingsArr[i] = "0" + generatedMatchingsArr[i];
+			//   } else {
+			//     generatedMatchingsArr[i] = "" + generatedMatchingsArr[i];
+			//   }
+			// }
+			return generatedMatchingsArr;
+		  }
+		  function randomInt(min, max) {
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+
+		  function isAlreadyMatched(imageIndex) {
+			for (i = 0; i < correctMatchings.length; i++) {
+			  if (correctMatchings[i] == imageIndex) {
+				return true;
+			  }
+			}
+			return false;
+		  }
+		  
+		  function update(num) {
+			console.log(correctMatchings);
+			if (!isAlreadyMatched(num)) {
+			  clicks++;
+			  click.innerHTML = "Clicks: " + clicks;
+			  console.log(clicks);
+			  elementName = "img" + num;
+			  
+			  if (eval(elementName).src.indexOf("img/default.PNG") != -1) {
+				imagesCurrentlyfacedUp.push(num);
+				imageNum = Math.ceil(findIndex(num) / 2);
+				eval(elementName).src = "img/" + imageNum + ".PNG";
+				if (imagesCurrentlyfacedUp.length == 2) {
+				  if (isMatchingPair(imagesCurrentlyfacedUp[0], imagesCurrentlyfacedUp[1])) {
+					correctMatchings.push(imagesCurrentlyfacedUp[0]);
+					correctMatchings.push(imagesCurrentlyfacedUp[1]);
+					imagesCurrentlyfacedUp.pop();
+					imagesCurrentlyfacedUp.pop();
+				  } else {
+					setTimeout(function() {
+					  eval("img" + imagesCurrentlyfacedUp[0]).src = "img/default.PNG";
+					  eval("img" + imagesCurrentlyfacedUp[1]).src = "img/default.PNG";
+					  imagesCurrentlyfacedUp.pop();
+					  imagesCurrentlyfacedUp.pop();
+					}, 1500);
+				  }
+				}
+			  } else {
+				imagesCurrentlyfacedUp.pop();
+				eval(elementName).src = "img/default.PNG";
+			  }
+			}
+			if (correctMatchings.length == 16) {
+			  setTimeout(function() {
+				if (clicks < 25) {
+				  alert("Great job! You're amazing at this! It only took you " + clicks + " clicks! Restarting...");
+				} else if (clicks < 40) {
+				  alert("Not bad, it took you " + clicks + " clicks. Restarting...");
+				} else {
+				  alert("You did it, but you're not very good at this...You should prob practice more. Restarting...");
+				}
+				initialize();
+			  }, 1000);
+			  
+			}
+		  }
+
+		  function isMatchingPair(pair1, pair2) {
+			for (i = 0; i < matchings.length - 1; i += 2) {
+			  if (matchings[i] == pair1 && matchings[i + 1] == pair2 || matchings[i] == pair2 && matchings[i + 1] == pair1) {
+				return true;
+			  }
+			}
+			return false;
+		  }
+		  
+		  //use this to find the img that should be displayed at buttonNum
+		  function findIndex(buttonNum) {
+			for (i = 0; i < matchings.length; i++) {
+			  if (matchings[i] == buttonNum) {
+				return i + 1;
+			  }
+			}
+		  }
+		  function wait(ms){
+			var start = new Date().getTime();
+			var end = start;
+			while(end < start + ms) {
+			  end = new Date().getTime();
+			}
+		  }
+
+		  function reset() {
+			initialize();
+		  }
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<h1>Matching Game!</h1>
+		<h3>The match game is an intense, competitive game where you are revealing images in a desperate search for two that match. As you find matches, those images will be revealed, but watch out! The computer is keeping track of the number of times you click and judging your every move. Can you complete the game in less than 25 clicks?</h3>
+		<div class = "container">
+		  <img class = "01" class = "item" src = "img/default.PNG" onclick = "update(1);" id = "01">
+		  <img class = "02" class = "item" src = "img/default.PNG" onclick = "update(2);" id = "02">
+		  <img class = "03" class = "item" src = "img/default.PNG" onclick = "update(3);" id = "03">
+		  <img class = "04" class = "item" src = "img/default.PNG" onclick = "update(4);" id = "04">
+		  <img class = "05" class = "item" src = "img/default.PNG" onclick = "update(5);" id = "05">
+		  <img class = "06" class = "item" src = "img/default.PNG" onclick = "update(6);" id = "06">
+		  <img class = "07" class = "item" src = "img/default.PNG" onclick = "update(7);" id = "07">
+		  <img class = "08" class = "item" src = "img/default.PNG" onclick = "update(8);" id = "08">
+		  <img class = "09" class = "item" src = "img/default.PNG" onclick = "update(9);" id = "09">
+		  <img class = "10" class = "item" src = "img/default.PNG" onclick = "update(10);" id = "10">
+		  <img class = "11" class = "item" src = "img/default.PNG" onclick = "update(11);" id = "11">
+		  <img class = "12" class = "item" src = "img/default.PNG" onclick = "update(12);" id = "12">
+		  <img class = "13" class = "item" src = "img/default.PNG" onclick = "update(13);" id = "13">
+		  <img class = "14" class = "item" src = "img/default.PNG" onclick = "update(14);" id = "14">
+		  <img class = "15" class = "item" src = "img/default.PNG" onclick = "update(15);" id = "15">
+		  <img class = "16" class = "item" src = "img/default.PNG" onclick = "update(16);" id = "16">
+		</div>
+		<h3 id = "clickElement">Clicks: </h3>
+		<div id = "buttonContainer"><button onclick = "reset();">Reset</button></div>
+	</body>
+</html>
