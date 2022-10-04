@@ -10,7 +10,7 @@
 		  [13] [14] [15] [16]
 		  */
 		  body {
-			background-image: url("img/background.png");
+			background-image: url("Img/background.png");
 			max-width: 100%;
 			max-height: 100%;
 		  }
@@ -100,22 +100,22 @@
 			img16 = document.getElementById("16");
 			click = document.getElementById("clickElement");
 
-			img1.src = "img/default.PNG";
-			img2.src = "img/default.PNG";
-			img3.src = "img/default.PNG";
-			img4.src = "img/default.PNG";
-			img5.src = "img/default.PNG";
-			img6.src = "img/default.PNG";
-			img7.src = "img/default.PNG";
-			img8.src = "img/default.PNG";
-			img9.src = "img/default.PNG";
-			img10.src = "img/default.PNG";
-			img11.src = "img/default.PNG";
-			img12.src = "img/default.PNG";
-			img13.src = "img/default.PNG";
-			img14.src = "img/default.PNG";
-			img15.src = "img/default.PNG";
-			img16.src = "img/default.PNG";
+			img1.src = "Img/default.PNG";
+			img2.src = "Img/default.PNG";
+			img3.src = "Img/default.PNG";
+			img4.src = "Img/default.PNG";
+			img5.src = "Img/default.PNG";
+			img6.src = "Img/default.PNG";
+			img7.src = "Img/default.PNG";
+			img8.src = "Img/default.PNG";
+			img9.src = "Img/default.PNG";
+			img10.src = "Img/default.PNG";
+			img11.src = "Img/default.PNG";
+			img12.src = "Img/default.PNG";
+			img13.src = "Img/default.PNG";
+			img14.src = "Img/default.PNG";
+			img15.src = "Img/default.PNG";
+			img16.src = "Img/default.PNG";
 			click.innerHTML = "Clicks: ";
 		  }
 
@@ -170,7 +170,7 @@
 			  if (eval(elementName).src.indexOf("img/default.PNG") != -1) {
 				imagesCurrentlyfacedUp.push(num);
 				imageNum = Math.ceil(findIndex(num) / 2);
-				eval(elementName).src = "img/" + imageNum + ".PNG";
+				eval(elementName).src = "Img/" + imageNum + ".PNG";
 				if (imagesCurrentlyfacedUp.length == 2) {
 				  if (isMatchingPair(imagesCurrentlyfacedUp[0], imagesCurrentlyfacedUp[1])) {
 					correctMatchings.push(imagesCurrentlyfacedUp[0]);
@@ -179,8 +179,8 @@
 					imagesCurrentlyfacedUp.pop();
 				  } else {
 					setTimeout(function() {
-					  eval("img" + imagesCurrentlyfacedUp[0]).src = "img/default.PNG";
-					  eval("img" + imagesCurrentlyfacedUp[1]).src = "img/default.PNG";
+					  eval("img" + imagesCurrentlyfacedUp[0]).src = "Img/default.PNG";
+					  eval("img" + imagesCurrentlyfacedUp[1]).src = "Img/default.PNG";
 					  imagesCurrentlyfacedUp.pop();
 					  imagesCurrentlyfacedUp.pop();
 					}, 1500);
@@ -188,7 +188,7 @@
 				}
 			  } else {
 				imagesCurrentlyfacedUp.pop();
-				eval(elementName).src = "img/default.PNG";
+				eval(elementName).src = "Img/default.PNG";
 			  }
 			}
 			if (correctMatchings.length == 16) {
@@ -240,22 +240,22 @@
 		<h1>Matching Game!</h1>
 		<h3>The match game is an intense, competitive game where you are revealing images in a desperate search for two that match. As you find matches, those images will be revealed, but watch out! The computer is keeping track of the number of times you click and judging your every move. Can you complete the game in less than 25 clicks?</h3>
 		<div class = "container">
-		  <img class = "01" class = "item" src = "img/default.PNG" onclick = "update(1);" id = "01">
-		  <img class = "02" class = "item" src = "img/default.PNG" onclick = "update(2);" id = "02">
-		  <img class = "03" class = "item" src = "img/default.PNG" onclick = "update(3);" id = "03">
-		  <img class = "04" class = "item" src = "img/default.PNG" onclick = "update(4);" id = "04">
-		  <img class = "05" class = "item" src = "img/default.PNG" onclick = "update(5);" id = "05">
-		  <img class = "06" class = "item" src = "img/default.PNG" onclick = "update(6);" id = "06">
-		  <img class = "07" class = "item" src = "img/default.PNG" onclick = "update(7);" id = "07">
-		  <img class = "08" class = "item" src = "img/default.PNG" onclick = "update(8);" id = "08">
-		  <img class = "09" class = "item" src = "img/default.PNG" onclick = "update(9);" id = "09">
-		  <img class = "10" class = "item" src = "img/default.PNG" onclick = "update(10);" id = "10">
-		  <img class = "11" class = "item" src = "img/default.PNG" onclick = "update(11);" id = "11">
-		  <img class = "12" class = "item" src = "img/default.PNG" onclick = "update(12);" id = "12">
-		  <img class = "13" class = "item" src = "img/default.PNG" onclick = "update(13);" id = "13">
-		  <img class = "14" class = "item" src = "img/default.PNG" onclick = "update(14);" id = "14">
-		  <img class = "15" class = "item" src = "img/default.PNG" onclick = "update(15);" id = "15">
-		  <img class = "16" class = "item" src = "img/default.PNG" onclick = "update(16);" id = "16">
+		  <img class = "01" class = "item" src = "Img/default.PNG" onclick = "update(1);" id = "01">
+		  <img class = "02" class = "item" src = "Img/default.PNG" onclick = "update(2);" id = "02">
+		  <img class = "03" class = "item" src = "Img/default.PNG" onclick = "update(3);" id = "03">
+		  <img class = "04" class = "item" src = "Img/default.PNG" onclick = "update(4);" id = "04">
+		  <img class = "05" class = "item" src = "Img/default.PNG" onclick = "update(5);" id = "05">
+		  <img class = "06" class = "item" src = "Img/default.PNG" onclick = "update(6);" id = "06">
+		  <img class = "07" class = "item" src = "Img/default.PNG" onclick = "update(7);" id = "07">
+		  <img class = "08" class = "item" src = "Img/default.PNG" onclick = "update(8);" id = "08">
+		  <img class = "09" class = "item" src = "Img/default.PNG" onclick = "update(9);" id = "09">
+		  <img class = "10" class = "item" src = "Img/default.PNG" onclick = "update(10);" id = "10">
+		  <img class = "11" class = "item" src = "Img/default.PNG" onclick = "update(11);" id = "11">
+		  <img class = "12" class = "item" src = "Img/default.PNG" onclick = "update(12);" id = "12">
+		  <img class = "13" class = "item" src = "Img/default.PNG" onclick = "update(13);" id = "13">
+		  <img class = "14" class = "item" src = "Img/default.PNG" onclick = "update(14);" id = "14">
+		  <img class = "15" class = "item" src = "Img/default.PNG" onclick = "update(15);" id = "15">
+		  <img class = "16" class = "item" src = "Img/default.PNG" onclick = "update(16);" id = "16">
 		</div>
 		<h3 id = "clickElement">Clicks: </h3>
 		<div id = "buttonContainer"><button onclick = "reset();">Reset</button></div>
